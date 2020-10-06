@@ -2,7 +2,7 @@ import React from 'react';
 import {data} from '../data.js';
 import Navbar from './Navbar';
 import Moviecard from './Moviecard';
-import movies from '../reducers/index.js';
+import {addMovies} from '../actions'
 
 class   App extends React.Component {
 
@@ -16,10 +16,7 @@ store.subscribe(()=>{
 })
     
     
-store.dispatch({
-  type:'ADD_MOVIE',
-  movies:data
-});
+store.dispatch(addMovies(data));
 console.log(store.getState());
   }
 
@@ -27,7 +24,7 @@ console.log(store.getState());
   render(){
     
     const {store}=this.props;
-    const movies=store.getState();
+    const   {list}=store.getState();
 
   return (
     
@@ -39,9 +36,9 @@ console.log(store.getState());
     <div className="tab">Favorites</div>
     </div>
     <div className="list">
-     { movies.map((movie) =>{
+     { list.map((movie,index) =>{
    
-     return <Moviecard movies={movie}/>
+     return <Moviecard movies={movie} key={`movies-${index}`}/>
 
      })}
     </div>
