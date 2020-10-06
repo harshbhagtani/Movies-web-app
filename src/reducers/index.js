@@ -1,5 +1,5 @@
 //here pure function is added
-import {ADD_MOVIE} from '../actions';
+import {ADD_MOVIE,ADD_FAVOURITE} from '../actions';
 
 
 const initialstate={
@@ -12,6 +12,12 @@ export default function movies(state=initialstate,action){
            ...state,//spread operator to retrive properties of state object in this returned one
            list:action.movies
        }
+    }
+    if(action.type===ADD_FAVOURITE){
+        return {
+            ...state,
+            favourites:[action.movie,...state.favourites]
+        }
     }
     return state;
 }

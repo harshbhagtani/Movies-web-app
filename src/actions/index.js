@@ -6,6 +6,7 @@ const { default: movies } = require("../reducers");
 }*/
 // action types 
 export const ADD_MOVIE='ADD_MOVIE';
+export const  ADD_FAVOURITE='ADD_FAVOURITE';
 //action creators
 
 export function addMovies(movies){
@@ -13,3 +14,9 @@ export function addMovies(movies){
     movies:movies
     }
 }
+export function addFavourites(movie){
+    return  {type:ADD_FAVOURITE,
+     movie:movie
+     }
+ }
+ 
