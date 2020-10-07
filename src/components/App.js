@@ -2,7 +2,7 @@ import React from 'react';
 import {data} from '../data.js';
 import Navbar from './Navbar';
 import Moviecard from './Moviecard';
-import {addMovies} from '../actions'
+import {addMovies,showfavourites} from '../actions'
 
 
 class   App extends React.Component {
@@ -33,15 +33,19 @@ console.log(store.getState());
 
   }
 
-displayall=()=>{
+displayall=(val)=>{
 
- 
+ const {store}=this.props;
+console.log(val);
+ store.dispatch(showfavourites(val))
 }
 
   render(){
    
     const {store}=this.props;
-    const   {list}=store.getState();
+    const   {list,sf,favourites}=store.getState();
+    const show=sf?favourites:list;
+
     //console.log(this.props.store.getState);
 
   return (
@@ -50,11 +54,11 @@ displayall=()=>{
   <Navbar/>
   <div className="main">
     <div className="tabs">
-    <div className="tab" onClick={this.displayall}>Movie</div>
-    <div className="tab">Favorites</div>
+    <div className="tab" onClick={()=>this.displayall(false)}>Movie</div>
+    <div className="tab" onClick={()=>this.displayall(true)}>Favorites</div>
     </div>
     <div className="list">
-     { list.map((movie,index) =>{
+     { show.map((movie,index) =>{
    
      return <Moviecard movies={movie} key={`movies-${index}`} 
      dispatch={this.props.store.dispatch}

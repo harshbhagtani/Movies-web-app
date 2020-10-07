@@ -1,5 +1,5 @@
 import React from 'react';
-import {addFavourites} from '../actions'
+import {addFavourites,unFavourites} from '../actions'
 
 
 
@@ -10,6 +10,11 @@ handlefavourites=()=>{
 
   dispatch(addFavourites(movies));
 
+}
+handleunfavourites=()=>{
+  const {movies,dispatch}=this.props;
+
+  dispatch(unFavourites(movies));
 }
 
     render(){
@@ -25,7 +30,7 @@ const {movies,favor}=this.props;
               <div className="plot">{movies.Plot}</div>
               <div className="footer">
               <div className="rating">{movies.imdbRating}</div>
-              {favor? <button className="unfavourite-btn" onClick={this.handlefavourites}>Unfavourite</button>:
+              {favor? <button className="unfavourite-btn" onClick={this.handleunfavourites}>Unfavourite</button>:
               <button className="favourite-btn" onClick={this.handlefavourites}>Favourite</button>}
               </div>
              
