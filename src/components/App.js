@@ -23,7 +23,7 @@ console.log(store.getState());
   }
 
   checkfavourite = (movie) => {
-   const {favourites}=this.props.store.getState();
+   const {favourites}=this.props.store.getState().movies;
 
    const index=favourites.indexOf(movie);
    if(index!==-1)return true;
@@ -41,9 +41,9 @@ console.log(val);
 }
 
   render(){
+   const {movies}=this.props.store.getState();
    
-    const {store}=this.props;
-    const   {list,sf,favourites}=store.getState();
+    const   {list,sf,favourites}=movies;
     const show=sf?favourites:list;
 
     //console.log(this.props.store.getState);

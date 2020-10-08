@@ -7,7 +7,7 @@ const initialstate={
   favourites:[],
   sf:false
 }
-export default function movies(state=initialstate,action){
+export  function movies(state=initialstate,action){
     if(action.type===ADD_MOVIE){
        return {
            ...state,//spread operator to retrive properties of state object in this returned one
@@ -36,5 +36,25 @@ export default function movies(state=initialstate,action){
     }
 
     return state;
+}
+const intialsearchstate={
+    result:{}
+};
+export function search(state=intialsearchstate,action){
+
+    return state;
+}
+
+const rootState={
+movies:initialstate,
+search:intialsearchstate
+}
+export default function rootReducer(state=rootState,action){
+
+return{
+    movies:movies(state.movies,action),
+    search:search(state.search,action)
+}
+
 }
 
