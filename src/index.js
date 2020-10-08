@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
 import './index.css';
 import App from './components/App';
 import rootReducer from './reducers';
 
-const store=createStore(rootReducer);
+
+const logger =({dispatch,getState})=>{
+return function(next){
+  return function(action){
+    //middleware code
+    console.log('action-type ',action);
+    next(action);
+  }
+ 
+}
+}
+const store=createStore(rootReducer,applyMiddleware(logger));
 console.log(store.getState());
 /*
+
 store.dispatch({
   type:'ADD_MOVIE',
   movies:[{name:'superman'}]
