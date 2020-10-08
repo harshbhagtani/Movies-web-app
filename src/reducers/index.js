@@ -1,5 +1,7 @@
 //here pure function is added
+import {combineReducers} from 'redux';
 import {ADD_MOVIE,ADD_FAVOURITE,UNFAVOURITES,SHOW_FAVOURITES} from '../actions';
+
 
 
 const initialstate={
@@ -44,7 +46,7 @@ export function search(state=intialsearchstate,action){
 
     return state;
 }
-
+/*this is what combinereduceser function  do
 const rootState={
 movies:initialstate,
 search:intialsearchstate
@@ -56,5 +58,12 @@ return{
     search:search(state.search,action)
 }
 
-}
+}*/
+
+export default combineReducers({
+ movies: movies,
+ search:search
+});
+
+
 
