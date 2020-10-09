@@ -11,6 +11,8 @@ export const ADD_MOVIE='ADD_MOVIE';
 export const  ADD_FAVOURITE='ADD_FAVOURITE';
 export const UNFAVOURITES='UNFAVOURITES';
 export const SHOW_FAVOURITES='SHOW_FAVOURITES';
+export const ADD_TO_SEARCH_RESULT='ADD_TO_SEARCH_RESULT';
+export const ADD_TO_MOVIES='ADD_TO_MOVIES';
 
 export function addMovies(movies){
    return  {type:ADD_MOVIE,
@@ -45,7 +47,27 @@ export function addtoMovies(movie){
     .then(response=>response.json())
     .then(movie=>{
         console.log(movie);
+        //dispactch action from here
+        dispatch(addToSearchResult(movie));
+
+    })
+    .catch((error)=>{
+        console.log(error);
     })
 }
+}
+
+export function addToSearchResult(movie){
+    return{
+type:ADD_TO_SEARCH_RESULT,
+movie:movie
+
+    }
+}
+export function addtoMovies2(movie){
+    return{
+        type:ADD_TO_MOVIES,
+        movie:movie
+    }
 }
 

@@ -41,7 +41,7 @@ console.log(val);
 }
 
   render(){
-   const {movies}=this.props.store.getState();
+   const {movies,search}=this.props.store.getState();
    
     const   {list,sf,favourites}=movies;
     const show=sf?favourites:list;
@@ -51,7 +51,8 @@ console.log(val);
   return (
     
     <div className="App">
-  <Navbar  dispatch={this.props.store.dispatch}/>
+  <Navbar  dispatch={this.props.store.dispatch}
+             search={search}/>
   <div className="main">
     <div className="tabs">
     <div className="tab" onClick={()=>this.displayall(false)}>Movie</div>

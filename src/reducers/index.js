@@ -1,6 +1,6 @@
 //here pure function is added
 import {combineReducers} from 'redux';
-import {ADD_MOVIE,ADD_FAVOURITE,UNFAVOURITES,SHOW_FAVOURITES} from '../actions';
+import {ADD_MOVIE,ADD_FAVOURITE,UNFAVOURITES,SHOW_FAVOURITES,ADD_TO_SEARCH_RESULT,ADD_TO_MOVIES} from '../actions';
 
 
 
@@ -36,13 +36,35 @@ export  function movies(state=initialstate,action){
             sf:action.sf
         }
     }
+    if(action.type===ADD_TO_MOVIES){
+        return {
+            ...state,
+           list:[action.movie,...state.list]
+        }
+    }
 
     return state;
 }
 const intialsearchstate={
-    result:{}
+    result:{},
+    showsearchresult:false
 };
 export function search(state=intialsearchstate,action){
+
+if(action.type===ADD_TO_SEARCH_RESULT){
+    if(action.movie.Response==='False')return state;
+ return {
+     result:action.movie,
+     showsearchresult:true
+ }
+}
+if(action.type===ADD_TO_MOVIES){
+    return {
+        ...state,
+      showsearchresult:false
+    }
+}
+
 
     return state;
 }

@@ -4,6 +4,7 @@ import {createStore,applyMiddleware} from 'redux';
 import './index.css';
 import App from './components/App';
 import rootReducer from './reducers';
+import thunk from 'redux-thunk';
 
 
 const logger =({dispatch,getState})=>{
@@ -17,13 +18,14 @@ return function(next){
  
 }
 }
+/*
 const thunk=({dispatch,getState})=>(next)=>(action)=>{
 
   if(typeof action==='function'){action(dispatch);
     return ;
   }
   next(action);
-}
+}*/
 
 
 const store=createStore(rootReducer,applyMiddleware(logger,thunk));
