@@ -5,7 +5,11 @@ import {addFavourites,unFavourites} from '../actions'
 
 class Moviecard extends React.Component{
 
+
+
+
 handlefavourites=()=>{
+
   const {movies,dispatch}=this.props;
 
   dispatch(addFavourites(movies));

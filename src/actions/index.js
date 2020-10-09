@@ -36,4 +36,16 @@ export function addFavourites(movie){
      }
  }
 
- // action types 
+ // action always return objects so here we dispatch function use middleware
+export function addtoMovies(movie){
+
+    return function (dispatch){
+   const url=`http://www.omdbapi.com/?i=tt3896198&apikey=7c32a4a&t=${movie}`
+    fetch(url)
+    .then(response=>response.json())
+    .then(movie=>{
+        console.log(movie);
+    })
+}
+}
+

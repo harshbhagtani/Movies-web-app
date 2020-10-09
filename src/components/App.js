@@ -51,7 +51,7 @@ console.log(val);
   return (
     
     <div className="App">
-  <Navbar/>
+  <Navbar  dispatch={this.props.store.dispatch}/>
   <div className="main">
     <div className="tabs">
     <div className="tab" onClick={()=>this.displayall(false)}>Movie</div>

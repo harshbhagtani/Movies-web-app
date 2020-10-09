@@ -10,13 +10,23 @@ const logger =({dispatch,getState})=>{
 return function(next){
   return function(action){
     //middleware code
+    if(typeof action!=='function')
     console.log('action-type ',action);
     next(action);
   }
  
 }
 }
-const store=createStore(rootReducer,applyMiddleware(logger));
+const thunk=({dispatch,getState})=>(next)=>(action)=>{
+
+  if(typeof action==='function'){action(dispatch);
+    return ;
+  }
+  next(action);
+}
+
+
+const store=createStore(rootReducer,applyMiddleware(logger,thunk));
 console.log(store.getState());
 /*
 
