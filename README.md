@@ -1,3 +1,9 @@
+In this we can search for movies(used OMDB api) and add it to our movies and also have a feature to favourite movies this app uses redux store.
+Also used firebase for adding deleting and updating features on web app.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
